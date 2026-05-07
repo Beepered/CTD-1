@@ -23,11 +23,27 @@ function App() {
     setTodoList(updateList);
   }
 
+  function updateTodo(editedTodo) {
+    // go through all todos, find and update editedTodo
+    const newList = todoList.map((todo) => {
+      if (todo.id == editedTodo.id) {
+        return { ...editedTodo };
+      } else {
+        return todo;
+      }
+    });
+    setTodoList(newList);
+  }
+
   return (
     <div>
       <h1>CTD-1</h1>
       <TodoForm onAddTodo={addTodo}></TodoForm>
-      <TodoList todoList={todoList} onCompleteTodo={completeTodo}></TodoList>
+      <TodoList
+        todoList={todoList}
+        onCompleteTodo={completeTodo}
+        onUpdateTodo={updateTodo}
+      ></TodoList>
     </div>
   );
 }
