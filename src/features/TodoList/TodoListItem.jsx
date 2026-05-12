@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { isValidTodoTitle } from "./utils/todoValidation";
-import TextInputWithLabel from "./shared/TextInputWithLabel";
+import { isValidTodoTitle } from "../../utils/todoValidation";
+import TextInputWithLabel from "../../shared/TextInputWithLabel";
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setEditing] = useState(false);
@@ -11,7 +11,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   }
 
   function handleUpdate(event) {
-    if (!isEditing) return;
+    if (!isEditing || !isValidTodoTitle(workingTitle)) return;
 
     event.preventDefault();
     const tempTodo = todo;
@@ -34,12 +34,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
             <button type="button" onClick={handleCancel}>
               Cancel
             </button>
-            <button
-              type="button"
-              onClick={() => {
-                if (isValidTodoTitle(workingTitle)) handleUpdate();
-              }}
-            >
+            <button type="button" onClick={handleUpdate}>
               Update
             </button>
           </>
