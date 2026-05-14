@@ -1,51 +1,14 @@
 import "./App.css";
-import TodoForm from "./features/TodoForm.jsx";
-import TodoList from "./features/TodoList/TodoList.jsx";
+
 import { useState } from "react";
+import Header from "./shared/Header";
+import TodoPage from "./features/Todos/TodoPage";
 
-function App() {
-  const [todoList, setTodoList] = useState([]);
-
-  function addTodo(todoTitle) {
-    let newToDo = { id: Date.now(), title: todoTitle, isCompleted: false };
-    setTodoList((previous) => [newToDo, ...previous]);
-  }
-
-  // set todo to completed, set new array with completed todo
-  function completeTodo(id) {
-    const updateList = todoList.map((todo) => {
-      if (todo.id == id) {
-        return { ...todo, isCompleted: true };
-      } else {
-        return todo;
-      }
-    });
-    setTodoList(updateList);
-  }
-
-  function updateTodo(editedTodo) {
-    // go through all todos, find and update editedTodo
-    const newList = todoList.map((todo) => {
-      if (todo.id == editedTodo.id) {
-        return { ...editedTodo };
-      } else {
-        return todo;
-      }
-    });
-    setTodoList(newList);
-  }
-
+export default function App() {
   return (
     <div>
-      <h1>CTD-1</h1>
-      <TodoForm onAddTodo={addTodo}></TodoForm>
-      <TodoList
-        todoList={todoList}
-        onCompleteTodo={completeTodo}
-        onUpdateTodo={updateTodo}
-      ></TodoList>
+      <Header></Header>
+      <TodoPage></TodoPage>
     </div>
   );
 }
-
-export default App;

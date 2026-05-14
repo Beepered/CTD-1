@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { isValidTodoTitle } from "../../utils/todoValidation";
-import TextInputWithLabel from "../../shared/TextInputWithLabel";
+import { isValidTodoTitle } from "../../../utils/todoValidation";
+import TextInputWithLabel from "../../../shared/TextInputWithLabel";
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
+export default function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setEditing] = useState(false);
   const [workingTitle, setTitle] = useState(todo.title);
 
@@ -55,5 +55,3 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     </li>
   );
 }
-
-export default TodoListItem;

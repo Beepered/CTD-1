@@ -1,6 +1,6 @@
 import TodoListItem from "./TodoListItem";
 
-function TodoList({ todoList, onCompleteTodo, onUpdateTodo }) {
+export default function TodoList({ todoList, onCompleteTodo, onUpdateTodo }) {
   const filteredTodoList = todoList.filter((todo) => todo.isCompleted == false);
 
   return (
@@ -20,5 +20,3 @@ function TodoList({ todoList, onCompleteTodo, onUpdateTodo }) {
     </ul>
   );
 }
-
-export default TodoList;
