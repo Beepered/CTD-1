@@ -1,23 +1,22 @@
 import "./App.css";
-import TodoForm from "./TodoForm.jsx";
-import TodoList from "./TodoList.jsx";
+
 import { useState } from "react";
+import Header from "./shared/Header";
+import TodoPage from "./features/Todos/TodoPage";
+import Logon from "./features/Logon";
 
-function App() {
-  const [todoList, setTodoList] = useState([]);
-
-  function addTodo(todoTitle) {
-    let newToDo = { id: Date.now(), title: todoTitle };
-    setTodoList((previous) => [newToDo, ...previous]);
-  }
+export default function App() {
+  const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
 
   return (
     <div>
-      <h1>CTD-1</h1>
-      <TodoForm onAddTodo={addTodo}></TodoForm>
-      <TodoList todoList={todoList}></TodoList>
+      <Header></Header>
+      {token ? (
+        <TodoPage token={token}></TodoPage>
+      ) : (
+        <Logon onSetEmail={setEmail} onSetToken={setToken}></Logon>
+      )}
     </div>
   );
 }
-
-export default App;
